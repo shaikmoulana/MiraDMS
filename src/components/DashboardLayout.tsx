@@ -88,9 +88,9 @@ export default function DashboardLayout() {
             </Link>
 
                         <Link
-              to="/deviceHealth"
+              to="/performance"
               className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                isActive('/deviceHealth') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
+                isActive('/performance') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
               }`}
             >
               {/* <Server className="w-5 h-5" /> */}
@@ -100,9 +100,9 @@ export default function DashboardLayout() {
             </Link>
 
             <Link
-            to="/devicePerformance"
+            to="/monitoring"
             className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-            isActive('/devicePerformance')
+            isActive('/monitoring')
             ? 'bg-blue-50 text-blue-600': 'text-gray-700 hover:bg-gray-50'  }`
             }>
             <MonitorHeartOutlinedIcon sx={{ fontSize: 20 }} />

@@ -7,6 +7,8 @@ import MultiHospitalOverview from './components/MultiHospitalOverview';
 import HospitalView from './components/HospitalView';
 import DeviceTypeView from './components/DeviceTypeView';
 import DeviceDetail from './components/DeviceDetail';
+import DevicePerformance from './components/DevicePerformance';
+import RealTimeMonitoring from './components/RealTimeMonitoring';
 
 export default function App() {
   return (
@@ -21,6 +23,8 @@ export default function App() {
             <Route path="hospital/:id" element={<HospitalView />} />
             <Route path="devices/:type" element={<DeviceTypeView />} />
             <Route path="device/:id" element={<DeviceDetail />} />
+            <Route path="performance" element={<DevicePerformance />} />
+            <Route path="monitoring" element={<RealTimeMonitoring />} />
           </Route>
         </Routes>
       </Router>
