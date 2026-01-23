@@ -5,31 +5,30 @@ import { ArrowLeft, Activity, AlertTriangle, TrendingUp, Wind, Droplets, Zap, Se
 import GaugeChart from './charts/GaugeChart';
 import { useTimeRange } from '../contexts/TimeRangeContext';
 import { getDataPointsForTimeRange, getTimeLabels } from '../utils/dataGenerator';
+import { hospitalsBaseData } from './hospitals';
 
 export default function HospitalView() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { timeRange } = useTimeRange();
 
+  const baseHospital = hospitalsBaseData.find(
+    h => h.id === Number(id)
+  );
+
+  if (!baseHospital) return <p>Hospital not found</p>;
+  
   const hospital = {
-    id: 1,
-    name: 'City General Hospital',
-    location: 'Downtown District',
-  };
+  ...baseHospital,
+};
 
-  const deviceStatusData = [
-    { name: 'Operational', value: 58, color: '#10b981' },
-    { name: 'Warning', value: 4, color: '#f59e0b' },
-    { name: 'Critical', value: 3, color: '#ef4444' },
-  ];
+  const deviceStatusData = hospital.healthData;
+  
+  const deviceTypesData = hospital.deviceTypes.map(d => ({
+  ...d,
+  icon: Server, // or map icons if you want
+}));
 
-  const deviceTypesData = [
-    { name: 'Blood Refrigerators', count: 15, icon: Droplets },
-    { name: 'Ventilators', count: 18, icon: Wind },
-    { name: 'Vaccine Refrigerators', count: 12, icon: Droplets },
-    { name: 'Incubators', count: 12, icon: Activity },
-    { name: 'UPS Systems', count: 20, icon: Zap },
-  ];
 
   const floorData = [
     { floor: 'ICU', healthy: 18, warning: 2, critical: 1 },
@@ -85,7 +84,7 @@ export default function HospitalView() {
             <Server className="w-6 h-6 text-blue-600" />
           </div>
           <p className="text-sm text-gray-600 mb-1">Total Devices</p>
-          <p className="text-gray-900">65</p>
+          <p className="text-gray-900">{hospital.totalDevices}</p>
           <p className="text-sm text-blue-600 mt-2">Across all floors</p>
         </div>
 
@@ -94,7 +93,7 @@ export default function HospitalView() {
             <AlertTriangle className="w-6 h-6 text-red-600" />
           </div>
           <p className="text-sm text-gray-600 mb-1">Critical Devices</p>
-          <p className="text-gray-900">3</p>
+<p className="text-gray-900">{hospital.healthData.find(d => d.name === 'Critical')?.value}</p>
           <p className="text-sm text-red-600 mt-2">Requires attention</p>
         </div>
 
@@ -103,7 +102,7 @@ export default function HospitalView() {
             <Activity className="w-6 h-6 text-amber-600" />
           </div>
           <p className="text-sm text-gray-600 mb-1">Warning Status</p>
-          <p className="text-gray-900">4</p>
+<p className="text-gray-900">{hospital.healthData.find(d => d.name === 'Warning')?.value}</p>
           <p className="text-sm text-amber-600 mt-2">Monitor closely</p>
         </div>
 

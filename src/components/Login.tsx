@@ -15,13 +15,15 @@ export default function Login() {
   const handleCredentialLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (isValidEmail && isValidPassword) {
-      navigate('/dashboard');
+      // navigate('/dashboard');
+      navigate('/hospitals');
     }
   };
 
   const handleSSOLogin = (provider: string) => {
     setTimeout(() => {
-      navigate('/dashboard');
+      // navigate('/dashboard');
+      navigate('/hospitals');
     }, 500);
   };
 

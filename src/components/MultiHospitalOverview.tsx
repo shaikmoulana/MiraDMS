@@ -5,6 +5,7 @@ import { Filter, AlertCircle, Building2, Activity, XCircle } from 'lucide-react'
 import Sparkline from './charts/Sparkline';
 import { useTimeRange } from '../contexts/TimeRangeContext';
 import { generateMetricData } from '../utils/dataGenerator';
+import { hospitalsBaseData } from './hospitals';
 
 export default function MultiHospitalOverview() {
   const navigate = useNavigate();
@@ -12,109 +13,30 @@ export default function MultiHospitalOverview() {
   const [severityFilter, setSeverityFilter] = useState('all');
   const [locationFilter, setLocationFilter] = useState('all');
 
-  const [hospitals, setHospitals] = useState([
-    {
-      id: 1,
-      name: 'City General Hospital',
-      location: 'Downtown',
-      totalDevices: 65,
-      offline: 3,
-      criticalAlerts: 2,
-      status: 'healthy',
-      healthData: [
-        { name: 'Healthy', value: 58, color: '#10b981' },
-        { name: 'Warning', value: 4, color: '#f59e0b' },
-        { name: 'Critical', value: 3, color: '#ef4444' },
-      ],
-      deviceTypes: [
-        { name: 'Ventilators', count: 18 },
-        { name: 'Refrigerators', count: 15 },
-        { name: 'Incubators', count: 12 },
-        { name: 'UPS', count: 20 },
-      ],
-      temperatureTrend: generateMetricData(timeRange.option, 20, 25),
-      lastUpdated: '2 min ago',
-    },
-    {
-      id: 2,
-      name: 'Metro Central Medical',
-      location: 'Midtown',
-      totalDevices: 48,
-      offline: 5,
-      criticalAlerts: 5,
-      status: 'warning',
-      healthData: [
-        { name: 'Healthy', value: 38, color: '#10b981' },
-        { name: 'Warning', value: 7, color: '#f59e0b' },
-        { name: 'Critical', value: 3, color: '#ef4444' },
-      ],
-      deviceTypes: [
-        { name: 'Ventilators', count: 12 },
-        { name: 'Refrigerators', count: 10 },
-        { name: 'Incubators', count: 8 },
-        { name: 'UPS', count: 18 },
-      ],
-      temperatureTrend: generateMetricData(timeRange.option, 21, 27),
-      lastUpdated: '1 min ago',
-    },
-    {
-      id: 3,
-      name: 'Westside Medical Center',
-      location: 'West End',
-      totalDevices: 42,
-      offline: 1,
-      criticalAlerts: 1,
-      status: 'healthy',
-      healthData: [
-        { name: 'Healthy', value: 39, color: '#10b981' },
-        { name: 'Warning', value: 2, color: '#f59e0b' },
-        { name: 'Critical', value: 1, color: '#ef4444' },
-      ],
-      deviceTypes: [
-        { name: 'Ventilators', count: 10 },
-        { name: 'Refrigerators', count: 8 },
-        { name: 'Incubators', count: 9 },
-        { name: 'UPS', count: 15 },
-      ],
-      temperatureTrend: generateMetricData(timeRange.option, 19, 23),
-      lastUpdated: '3 min ago',
-    },
-    {
-      id: 4,
-      name: 'North Valley Hospital',
-      location: 'North District',
-      totalDevices: 30,
-      offline: 7,
-      criticalAlerts: 4,
-      status: 'critical',
-      healthData: [
-        { name: 'Healthy', value: 19, color: '#10b981' },
-        { name: 'Warning', value: 7, color: '#f59e0b' },
-        { name: 'Critical', value: 4, color: '#ef4444' },
-      ],
-      deviceTypes: [
-        { name: 'Ventilators', count: 8 },
-        { name: 'Refrigerators', count: 6 },
-        { name: 'Incubators', count: 5 },
-        { name: 'UPS', count: 11 },
-      ],
-      temperatureTrend: generateMetricData(timeRange.option, 22, 29),
-      lastUpdated: '5 min ago',
-    },
-  ]);
+  const [hospitals, setHospitals] = useState(() =>
+  hospitalsBaseData.map(hospital => ({
+    ...hospital,
+    temperatureTrend: generateMetricData(
+      timeRange.option,
+      hospital.temperatureBase.min,
+      hospital.temperatureBase.max
+    ),
+  }))
+);
 
-  // Update hospital temperature trends when time range changes
   useEffect(() => {
-    setHospitals(prevHospitals =>
-      prevHospitals.map(hospital => ({
-        ...hospital,
-        temperatureTrend: generateMetricData(timeRange.option, 
-          hospital.id === 1 ? 20 : hospital.id === 2 ? 21 : hospital.id === 3 ? 19 : 22,
-          hospital.id === 1 ? 25 : hospital.id === 2 ? 27 : hospital.id === 3 ? 23 : 29
-        )
-      }))
-    );
-  }, [timeRange]);
+  setHospitals(prevHospitals =>
+    prevHospitals.map(hospital => ({
+      ...hospital,
+      temperatureTrend: generateMetricData(
+        timeRange.option,
+        hospital.temperatureBase.min,
+        hospital.temperatureBase.max
+      ),
+    }))
+  );
+}, [timeRange]);
+
 
   const filteredHospitals = hospitals.filter((hospital) => {
     if (severityFilter !== 'all' && hospital.status !== severityFilter) return false;
