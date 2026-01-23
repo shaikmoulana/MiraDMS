@@ -14,7 +14,8 @@ export default function DashboardLayout() {
   const showTimeRangeSelector = !location.pathname.includes('/login');
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    // <div style={{overflow: "hidden", height: "100vh"}}>
+      <div>
 
       {/* Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -51,8 +52,9 @@ export default function DashboardLayout() {
         </div>
       </header>
 
-      {/* <div className="flex"> */}
-      <div className="flex h-[calc(100vh-73px)] overflow-hidden">
+<div style={{ display: "flex" }}>
+   {/* <div className="flex h-[calc(100vh-73px)] overflow-hidden"> */}
+    <div>
         {/* Sidebar */}
         {/* <aside className="w-64 bg-white border-r border-gray-200 min-h-[calc(100vh-73px)]"> */}
         <aside className="w-64 bg-white border-r border-gray-200 top-[73px] left-0 h-[calc(100vh-73px)] overflow-y-auto">
@@ -133,11 +135,17 @@ export default function DashboardLayout() {
         {/* <main className="flex-1 p-6">
           <Outlet />
         </main> */}
-        <main className="flex-1 p-6 ml-64">
-  <Outlet />
-</main>
+        {/* <main className="flex-1 p-6 ml-64">
+  
+</main> */}
 
       </div>
-    </div>
+      <div style={{height: "650px" , width: "100%", overflowY: "auto"}}>
+        <Outlet />
+      </div>
+</div>
+      {/* <div className="flex"> */}
+     
+</div>
   );
 }
