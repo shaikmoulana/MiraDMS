@@ -283,6 +283,7 @@ export default function HospitalView() {
     />
   </div>
 )}
+<div style={{textAlign:"center"}}>MiraDMS - Healthcare Equipment Monitoring System</div>
 
     </div>
   );

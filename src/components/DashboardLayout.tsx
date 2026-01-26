@@ -15,7 +15,7 @@ export default function DashboardLayout() {
 
   return (
     // <div style={{overflow: "hidden", height: "100vh"}}>
-      <div>
+    <div>
 
       {/* Header */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -32,7 +32,7 @@ export default function DashboardLayout() {
               </div>
             </div>
           </div>
-          
+
           <div className="flex items-center gap-4">
             {showTimeRangeSelector && <TimeRangeSelector />}
             <button className="relative p-2 hover:bg-gray-100 rounded-lg">
@@ -52,70 +52,64 @@ export default function DashboardLayout() {
         </div>
       </header>
 
-<div style={{ display: "flex" }}>
-   {/* <div className="flex h-[calc(100vh-73px)] overflow-hidden"> */}
-    <div>
-        {/* Sidebar */}
-        {/* <aside className="w-64 bg-white border-r border-gray-200 min-h-[calc(100vh-73px)]"> */}
-        <aside className="w-64 bg-white border-r border-gray-200 top-[73px] left-0 h-[calc(100vh-73px)] overflow-y-auto">
-          <nav className="p-4 space-y-1">
-            <Link
-              to="/hospitals"
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                isActive('/hospitals') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-            <LayoutDashboard className="w-5 h-5" />
-              <span>All Hospitals</span>
-            </Link>
+      <div style={{ display: "flex" }}>
+        {/* <div className="flex h-[calc(100vh-73px)] overflow-hidden"> */}
+        <div>
+          {/* Sidebar */}
+          {/* <aside className="w-64 bg-white border-r border-gray-200 min-h-[calc(100vh-73px)]"> */}
+          <aside className="w-64 bg-white border-r border-gray-200 top-[73px] left-0 h-[calc(100vh-73px)] overflow-y-auto">
+            <nav className="p-4 space-y-1">
+              <Link
+                to="/hospitals"
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive('/hospitals') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+              >
+                <LayoutDashboard className="w-5 h-5" />
+                <span>All Hospitals</span>
+              </Link>
 
-            <Link
-              to="/hospital/1"
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                isActive('/hospital/1') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              <span>City General Hospital</span>
-            </Link>
+              <Link
+                to="/hospital/1"
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive('/hospital/1') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+              >
+                <span>City General Hospital</span>
+              </Link>
 
-            <Link
-              to="/hospital/2"
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                isActive('/hospital/2') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              <span>Metro Central Medical</span>
-            </Link>
+              <Link
+                to="/hospital/2"
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive('/hospital/2') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+              >
+                <span>Metro Central Medical</span>
+              </Link>
 
-            <Link
-              to="/hospital/3"
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                isActive('/hospital/3') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              <span>Westside Medical Center</span>
-            </Link>
+              <Link
+                to="/hospital/3"
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive('/hospital/3') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+              >
+                <span>Westside Medical Center</span>
+              </Link>
 
-            <Link
-              to="/hospital/4"
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                isActive('/hospital/4') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              <span>North Valley Hospital</span>
-            </Link>
+              <Link
+                to="/hospital/4"
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive('/hospital/4') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+              >
+                <span>North Valley Hospital</span>
+              </Link>
 
-            <Link
-              to="/dashboard"
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                isActive('/dashboard') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              <Building2 className="w-5 h-5" />
-              <span>Smart Health</span>
-            </Link>
+              <Link
+                to="/dashboard"
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive('/dashboard') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+              >
+                <Building2 className="w-5 h-5" />
+                <span>Smart Health</span>
+              </Link>
 
-            <Link
+              {/* <Link
               to="/devices/ventilators"
               className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                 isActive('/devices') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
@@ -123,65 +117,62 @@ export default function DashboardLayout() {
             >
               <Server className="w-5 h-5" />
               <span>Device Health</span>
-            </Link>
+            </Link> */}
 
-                        <Link
-              to="/performance"
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                isActive('/performance') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
-              }`}
-            >
-              {/* <Server className="w-5 h-5" /> */}
-              <TrendingUpOutlinedIcon sx={{fontSize:20}} />
-              <span>Device Performance</span>
-              
-            </Link>
-
-            <Link
-            to="/monitoring"
-            className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-            isActive('/monitoring')
-            ? 'bg-blue-50 text-blue-600': 'text-gray-700 hover:bg-gray-50'  }`
-            }>
-            <MonitorHeartOutlinedIcon sx={{ fontSize: 20 }} />
-            <span>Real-Time Monitoring</span>
-            </Link>
-
-            <div className="pt-4 mt-4 border-t border-gray-200">
               {/* <Link
+                to="/performance"
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive('/performance') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
+                  }`}
+              >
+                <Server className="w-5 h-5" />
+                <TrendingUpOutlinedIcon sx={{ fontSize: 20 }} />
+                <span>Device Performance</span>
+              </Link> */}
+
+              {/* <Link
+                to="/monitoring"
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${isActive('/monitoring')
+                    ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'}`
+                }>
+                <MonitorHeartOutlinedIcon sx={{ fontSize: 20 }} />
+                <span>Real-Time Monitoring</span>
+              </Link> */}
+
+              <div className="pt-4 mt-4 border-t border-gray-200">
+                {/* <Link
                 to="/settings"
                 className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-50"
               >
                 <Settings className="w-5 h-5" />
                 <span>Settings</span>
               </Link> */}
-              
-              <Link
-                to="/login"
-                className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-50"
-              >
-                <LogOut className="w-5 h-5" />
-                <span>Sign Out</span>
-              </Link>
-            </div>
-          </nav>
-        </aside>
 
-        {/* Main Content */}
-        {/* <main className="flex-1 p-6">
+                <Link
+                  to="/login"
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-50"
+                >
+                  <LogOut className="w-5 h-5" />
+                  <span>Sign Out</span>
+                </Link>
+              </div>
+            </nav>
+          </aside>
+
+          {/* Main Content */}
+          {/* <main className="flex-1 p-6">
           <Outlet />
         </main> */}
-        {/* <main className="flex-1 p-6 ml-64">
+          {/* <main className="flex-1 p-6 ml-64">
   
 </main> */}
 
+        </div>
+        <div style={{ height: "650px", width: "100%", overflowY: "auto", marginLeft: "10px" }}>
+          <Outlet />
+        </div>
       </div>
-      <div style={{height: "650px" , width: "100%", overflowY: "auto", marginLeft:"10px"}}>
-        <Outlet />
-      </div>
-</div>
       {/* <div className="flex"> */}
-     
-</div>
+
+    </div>
   );
 }

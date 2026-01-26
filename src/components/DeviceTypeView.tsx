@@ -126,7 +126,7 @@ import { getDataPointsForTimeRange, getTimeLabels, generateMetricData } from '..
         </button>
         <div className="flex-1">
           <h1 className="text-gray-900">{deviceTypeName}</h1>
-          <p className="text-gray-600">City General Hospital</p>
+          {/* <p className="text-gray-600">{City General Hospital}</p> */}
         </div>
       </div>
 

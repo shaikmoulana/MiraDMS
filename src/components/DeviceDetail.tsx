@@ -120,7 +120,7 @@ export default function DeviceDetail() {
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button> */}
         <div className="flex-1">
-          <h1 className="text-gray-900">{device.name}</h1>
+          <h1 className="text-gray-900">{device.id}</h1>
           <p className="text-gray-600">{device.location}</p>
         </div>
         <div className="flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-lg">
