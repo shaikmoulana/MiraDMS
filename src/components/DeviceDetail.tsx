@@ -1,27 +1,25 @@
 import { useState, useEffect } from 'react';
-// import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Activity, AlertTriangle, Clock, Download, ThermometerSun, Zap, Cpu } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import GaugeChart from './charts/GaugeChart';
 import { useTimeRange } from '../contexts/TimeRangeContext';
 import { getDataPointsForTimeRange, getTimeLabels } from '../utils/dataGenerator';
 
-// export default function DeviceDetail() {
-export default function DeviceDetail({ deviceType, onClose }) {
-  // const { id } = useParams();
-  // const navigate = useNavigate();
+export default function DeviceDetail() {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const { timeRange } = useTimeRange();
 
   const device = {
-  id: `${deviceType.name}-001`,
-  name: deviceType.name,
-  model: 'VentMaster 3000',
-  location: deviceType.location,
-  status: 'healthy',
-  lastMaintenance: '2024-11-15',
-  nextMaintenance: '2025-01-15',
-};
-
+    id: id || 'VNT-001',
+    name: 'Ventilator Unit 001',
+    model: 'VentMaster 3000',
+    location: 'City General Hospital - ICU-1',
+    status: 'healthy',
+    lastMaintenance: '2024-11-15',
+    nextMaintenance: '2025-01-15',
+  };
 
   const [realTimeData, setRealTimeData] = useState(
     Array.from({ length: 30 }, (_, i) => ({
@@ -115,13 +113,12 @@ export default function DeviceDetail({ deviceType, onClose }) {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center gap-4">
-        <button
-  onClick={onClose}
-  className="p-2 hover:bg-gray-100 rounded-lg"
->
-
+        {/* <button
+          onClick={() => navigate('/hospitals')}
+          className="p-2 hover:bg-gray-100 rounded-lg"
+        >
           <ArrowLeft className="w-5 h-5 text-gray-600" />
-        </button>
+        </button> */}
         <div className="flex-1">
           <h1 className="text-gray-900">{device.name}</h1>
           <p className="text-gray-600">{device.location}</p>

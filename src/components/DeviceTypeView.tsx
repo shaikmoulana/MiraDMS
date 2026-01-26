@@ -6,15 +6,18 @@ import Sparkline from './charts/Sparkline';
 import { useTimeRange } from '../contexts/TimeRangeContext';
 import { getDataPointsForTimeRange, getTimeLabels, generateMetricData } from '../utils/dataGenerator';
 
-export default function DeviceTypeView() {
-  const { type } = useParams();
-  const navigate = useNavigate();
+// export default function DeviceTypeView() {
+  export default function DeviceTypeView({ deviceType, onClose }) {
+    const { type } = useParams();
+    const navigate = useNavigate();
   const { timeRange } = useTimeRange();
   
   const [statusFilter, setStatusFilter] = useState('all');
   const [roomFilter, setRoomFilter] = useState('all');
 
-  const deviceTypeName = type?.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') || 'Devices';
+  // const deviceTypeName = type?.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ') || 'Devices';
+  const deviceTypeName = deviceType?.name || 'Devices';
+
 
   const [temperatureData, setTemperatureData] = useState(() => {
     const dataPoints = getDataPointsForTimeRange(timeRange.option);
@@ -40,23 +43,23 @@ export default function DeviceTypeView() {
   };
 
   const errorsByDevice = [
-    { device: 'VNT-001', errors: 12 },
-    { device: 'VNT-002', errors: 5 },
-    { device: 'VNT-003', errors: 18 },
-    { device: 'VNT-004', errors: 3 },
-    { device: 'VNT-005', errors: 9 },
+    { device: `${deviceType.name}-001`, errors: 12 },
+    { device: `${deviceType.name}-002`, errors: 5 },
+    { device: `${deviceType.name}-003`, errors: 18 },
+    { device: `${deviceType.name}-004`, errors: 3 },
+    { device: `${deviceType.name}-005`, errors: 9 },
   ];
 
   const rooms = [
-    { name: 'ICU-1', devices: ['VNT-001', 'VNT-002', 'VNT-003'] },
-    { name: 'ICU-2', devices: ['VNT-004', 'VNT-005', 'VNT-006'] },
-    { name: 'ICU-3', devices: ['VNT-007', 'VNT-008', 'VNT-009'] },
-    { name: 'ER-1', devices: ['VNT-010', 'VNT-011', 'VNT-012'] },
+    { name: 'ICU-1', devices: [`${deviceType.name}-001`, `${deviceType.name}-002`, `${deviceType.name}-003`] },
+    { name: 'ICU-2', devices: [`${deviceType.name}-004`, `${deviceType.name}-005`, `${deviceType.name}-006`] },
+    { name: 'ICU-3', devices: [`${deviceType.name}-007`, `${deviceType.name}-008`, `${deviceType.name}-009`] },
+    { name: 'ER-1', devices: [`${deviceType.name}-010`, `${deviceType.name}-011`, `${deviceType.name}-012`] },
   ];
 
   const devices = [
     { 
-      id: 'VNT-001', 
+      id: `${deviceType.name}-001`, 
       room: 'ICU-1', 
       status: 'healthy', 
       model: 'VentMaster 3000',
@@ -64,7 +67,7 @@ export default function DeviceTypeView() {
       lastCheck: '2 min ago'
     },
     { 
-      id: 'VNT-002', 
+      id: `${deviceType.name}-002`, 
       room: 'ICU-1', 
       status: 'warning', 
       model: 'VentMaster 3000',
@@ -72,7 +75,7 @@ export default function DeviceTypeView() {
       lastCheck: '1 min ago'
     },
     { 
-      id: 'VNT-003', 
+      id: `${deviceType.name}-003`, 
       room: 'ICU-1', 
       status: 'critical', 
       model: 'VentPro 2500',
@@ -80,7 +83,7 @@ export default function DeviceTypeView() {
       lastCheck: '30 sec ago'
     },
     { 
-      id: 'VNT-004', 
+      id: `${deviceType.name}-004`, 
       room: 'ICU-2', 
       status: 'healthy', 
       model: 'VentMaster 3000',
@@ -88,7 +91,7 @@ export default function DeviceTypeView() {
       lastCheck: '3 min ago'
     },
     { 
-      id: 'VNT-005', 
+      id: `${deviceType.name}-005`, 
       room: 'ICU-2', 
       status: 'healthy', 
       model: 'VentPro 2500',
@@ -115,9 +118,10 @@ export default function DeviceTypeView() {
       {/* Header */}
       <div className="flex items-center gap-4">
         <button
-          onClick={() => navigate(`/hospital/1`)}
-          className="p-2 hover:bg-gray-100 rounded-lg"
-        >
+  onClick={onClose}
+  className="p-2 hover:bg-gray-100 rounded-lg"
+>
+
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
         <div className="flex-1">

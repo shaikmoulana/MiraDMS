@@ -70,6 +70,42 @@ export default function DashboardLayout() {
             </Link>
 
             <Link
+              to="/hospital/1"
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                isActive('/hospital/1') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              <span>City General Hospital</span>
+            </Link>
+
+            <Link
+              to="/hospital/2"
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                isActive('/hospital/2') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              <span>Metro Central Medical</span>
+            </Link>
+
+            <Link
+              to="/hospital/3"
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                isActive('/hospital/3') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              <span>Westside Medical Center</span>
+            </Link>
+
+            <Link
+              to="/hospital/4"
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                isActive('/hospital/4') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              <span>North Valley Hospital</span>
+            </Link>
+
+            <Link
               to="/dashboard"
               className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                 isActive('/dashboard') ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'

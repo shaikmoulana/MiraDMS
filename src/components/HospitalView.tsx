@@ -6,7 +6,7 @@ import GaugeChart from './charts/GaugeChart';
 import { useTimeRange } from '../contexts/TimeRangeContext';
 import { getDataPointsForTimeRange, getTimeLabels } from '../utils/dataGenerator';
 import { hospitalsBaseData } from './hospitals';
-import DeviceDetail from './DeviceDetail';
+import DeviceTypeView from './DeviceTypeView';
 
 export default function HospitalView() {
   const { id } = useParams();
@@ -254,9 +254,8 @@ export default function HospitalView() {
               // onClick={() => navigate(`/devices/${deviceType.name.toLowerCase().replace(/ /g, '-')}`)}
               onClick={() =>
   setSelectedDeviceType(prev =>
-  prev?.name === deviceType.name ? null : deviceType
-)
-
+    prev?.name === deviceType.name ? null : deviceType
+  )
 }
 
               className="bg-white rounded-xl border border-gray-200 p-4 hover:border-blue-500 hover:shadow-lg cursor-pointer transition-all"
@@ -276,11 +275,13 @@ export default function HospitalView() {
           );
         })}
       </div>
-        {selectedDeviceType && (
-  <DeviceDetail
-    deviceType={selectedDeviceType}
-    onClose={() => setSelectedDeviceType(null)}
-  />
+      {selectedDeviceType && (
+  <div className="mt-6">
+    <DeviceTypeView
+      deviceType={selectedDeviceType}
+      onClose={() => setSelectedDeviceType(null)}
+    />
+  </div>
 )}
 
     </div>
