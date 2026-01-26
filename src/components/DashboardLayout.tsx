@@ -140,7 +140,7 @@ export default function DashboardLayout() {
 </main> */}
 
       </div>
-      <div style={{height: "650px" , width: "100%", overflowY: "auto"}}>
+      <div style={{height: "650px" , width: "100%", overflowY: "auto", marginLeft:"10px"}}>
         <Outlet />
       </div>
 </div>

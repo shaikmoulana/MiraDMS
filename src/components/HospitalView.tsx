@@ -6,11 +6,14 @@ import GaugeChart from './charts/GaugeChart';
 import { useTimeRange } from '../contexts/TimeRangeContext';
 import { getDataPointsForTimeRange, getTimeLabels } from '../utils/dataGenerator';
 import { hospitalsBaseData } from './hospitals';
+import DeviceDetail from './DeviceDetail';
 
 export default function HospitalView() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { timeRange } = useTimeRange();
+  const [selectedDeviceType, setSelectedDeviceType] = useState(null);
+
 
   const baseHospital = hospitalsBaseData.find(
     h => h.id === Number(id)
@@ -248,7 +251,14 @@ export default function HospitalView() {
           return (
             <div
               key={index}
-              onClick={() => navigate(`/devices/${deviceType.name.toLowerCase().replace(/ /g, '-')}`)}
+              // onClick={() => navigate(`/devices/${deviceType.name.toLowerCase().replace(/ /g, '-')}`)}
+              onClick={() =>
+  setSelectedDeviceType(prev =>
+  prev?.name === deviceType.name ? null : deviceType
+)
+
+}
+
               className="bg-white rounded-xl border border-gray-200 p-4 hover:border-blue-500 hover:shadow-lg cursor-pointer transition-all"
             >
               <div className="flex items-center gap-2 mb-3">
@@ -266,6 +276,13 @@ export default function HospitalView() {
           );
         })}
       </div>
+        {selectedDeviceType && (
+  <DeviceDetail
+    deviceType={selectedDeviceType}
+    onClose={() => setSelectedDeviceType(null)}
+  />
+)}
+
     </div>
   );
 }
