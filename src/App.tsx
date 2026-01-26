@@ -9,11 +9,13 @@ import DeviceTypeView from './components/DeviceTypeView';
 import DeviceDetail from './components/DeviceDetail';
 import DevicePerformance from './components/DevicePerformance';
 import RealTimeMonitoring from './components/RealTimeMonitoring';
+import ScrollToTop from './ScrollToTop';
 
 export default function App() {
   return (
     <TimeRangeProvider>
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<DashboardLayout />}>
